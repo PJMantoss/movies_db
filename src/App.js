@@ -1,14 +1,7 @@
 import React from 'react';
 import './App.css';
-
-function Movies(){
-  return(
-        <div>
-            <div>{}</div>
-            <div></div>
-        </div>
-  )
-}
+import MovieHome from './movieComponents/MovieHome';
+import Search from './searchComponents/Search';
 
 class App extends React.Component {
   constructor(props){
@@ -31,8 +24,10 @@ class App extends React.Component {
             </tr>
           </tbody>
         </table>
-  
-        <input placeholder="Search Bar" className="searchBar" />
+
+        <Search />
+
+        <MovieHome />
 
         {this.state.rows}
   

@@ -1,8 +1,8 @@
 import React from 'react'
 
-function listItem = (props) => <li>{props.text}</li>
+const listItem = (props) => <li>{props.text}</li>
 
-function List(props) {
+const List = (props) => {
 
     const listNodes = props.data.map((value, index) => {
         return(

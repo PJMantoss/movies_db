@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import List from './List';
 
-export class MovieHome extends Component {
+class MovieHome extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -16,22 +16,21 @@ export class MovieHome extends Component {
     }
 
     getListMovies(){
-        const ids = [1,2,3,4,5,6,7,8,9,10];
 
         let listMovies = [];
-    }
 
-    ids.forEach(id => 
-        fetch("http://api.tvmaze.com/shows?page=1" + id)
-        .then(response => response.json())
-        .then(show => {
-            listMovies.push(show)
-        })
-    );
+     
+            fetch("http://api.tvmaze.com/shows?page=1")
+            .then(response => response.json())
+            .then(show => {
+                listMovies.push(show);
+            })
+
 
     this.setState({
         listMovies: listMovies.sort((a, b) => a.runtime - b.runtime)
     });
+}
 
     render() {
         return (
