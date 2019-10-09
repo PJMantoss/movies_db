@@ -30,14 +30,12 @@ function Transition(props) {
 
 
 export class SearchResult extends Component {
-    constructor(props){
-        super(props)
+    
         this.state = {
             open:false,
             show:null
         }
-        this.handleClose = this.handleClose.bind(this);
-    }
+        
 
     handleClose(){
         this.setState({
@@ -66,32 +64,64 @@ export class SearchResult extends Component {
                              TransitionComponent={Transition} 
                         >
                     
-                    <AppBar style={style.appBar}>
-                        <Toolbar>
-                            <Link to={'/'}>
-                                <IconButton color="default" onClick={this.handleClose} aria-label="Close">
-                                    <CloseIcon />
-                                </IconButton>
-                            </Link>
-                            <Typography variant="title" color="inherit" style={styles.flex}>
-                                {show.name}
-                            </Typography>
-                        </Toolbar>
-                    </AppBar>
+                                <AppBar style={style.appBar}>
+                                    <Toolbar>
+                                        <Link to={'/'}>
+                                            <IconButton color="default" onClick={this.handleClose} aria-label="Close">
+                                                <CloseIcon />
+                                            </IconButton>
+                                        </Link>
+                                        <Typography variant="title" color="inherit" style={styles.flex}>
+                                            {show.name}
+                                        </Typography>
+                                    </Toolbar>
+                                </AppBar>
 
-                    <div style={{
-                        flex: 1,
-                        display:'flex',
-                        flexDirection: 'row',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                    }}>
-                        <div></div>
-                    </div>
+                                <div style={{
+                                    flex: 1,
+                                    display:'flex',
+                                    flexDirection: 'row',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                }}>
+                                    <div>
+                                        <ListItem button>
+                                            {
+                                                show.image != null &&
+                                                <img alt="Show" src={show.image.medium}/>
+                                            }
+                                        </ListItem>
+                                    </div>
+
+                                    <div>
+                                        <List>
+                                            <ListItem button>
+                                                <ListItemText primary="Premiered" secondary={show.premiered} />
+                                            </ListItem>
+
+                                            <Divider />
+
+                                            <ListItem button>
+                                                <ListItemText primary="Rating" secondary={show.rating.average} />
+                                            </ListItem>
+
+                                            <Divider />
+
+                                            <ListItem button>
+                                                <ListItemText primary="Episodes" secondary={show._embedded.episodes.length} />
+                                            </ListItem>
+
+                                            <Divider />
+
+                                        </List>
+                                    </div>
+
+                                </div>
+                        </Dialog>
                 }
             </div>
         )
     }
 }
 
-export default SearchResult
+export default SearchResult;

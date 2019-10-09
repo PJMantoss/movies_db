@@ -1,13 +1,9 @@
 import React from 'react';
 import './App.css';
 import 'whatwg-fetch';
-import MovieHome from './movieComponents/MovieHome';
-import Search from './searchComponents/Search';
+import Home from './Home';
 
 class App extends React.Component {
-  constructor(props){
-    super(props)
-  }
 
   render(){
     return (
@@ -24,9 +20,7 @@ class App extends React.Component {
           </tbody>
         </table>
 
-        <Search />
-
-        <MovieHome />
+        <Home />
   
       </div>
     );
