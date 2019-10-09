@@ -34,8 +34,6 @@ class App extends React.Component {
   
         <input placeholder="Search Bar" className="searchBar" />
 
-        <Movies />
-
         {this.state.rows}
   
       </div>
