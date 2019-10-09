@@ -31,13 +31,13 @@ function Transition(props) {
 
 export class SearchResult extends Component {
     
-        this.state = {
+        state = {
             open:false,
             show:null
         }
         
 
-    handleClose(){
+    handleClose = () => {
         this.setState({
             open: false
         });
@@ -64,7 +64,7 @@ export class SearchResult extends Component {
                              TransitionComponent={Transition} 
                         >
                     
-                                <AppBar style={style.appBar}>
+                                <AppBar style={styles.appBar}>
                                     <Toolbar>
                                         <Link to={'/'}>
                                             <IconButton color="default" onClick={this.handleClose} aria-label="Close">

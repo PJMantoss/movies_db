@@ -3,6 +3,10 @@ import './App.css';
 import 'whatwg-fetch';
 import Home from './Home';
 
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+
 class App extends React.Component {
 
   render(){
@@ -19,6 +23,14 @@ class App extends React.Component {
             </tr>
           </tbody>
         </table>
+
+        <AppBar position="static" >
+            <Toolbar >
+                <Typography variant="title" color="inherit" style={{flex:1}} align="center">
+                  Movies
+                </Typography>
+            </Toolbar>
+        </AppBar>
 
         <Home />
   

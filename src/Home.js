@@ -8,6 +8,6 @@ const Home = props => (
         <Route exact path="/" component={Search}/>
         <Route path="/movies/:id" component={SearchResult}/>
     </Switch>
-)
+);
 
 export default Home;
