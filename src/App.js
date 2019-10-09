@@ -1,13 +1,12 @@
 import React from 'react';
 import './App.css';
+import 'whatwg-fetch';
 import MovieHome from './movieComponents/MovieHome';
 import Search from './searchComponents/Search';
 
 class App extends React.Component {
   constructor(props){
     super(props)
-    this.state = {}
-  
   }
 
   render(){
@@ -28,8 +27,6 @@ class App extends React.Component {
         <Search />
 
         <MovieHome />
-
-        {this.state.rows}
   
       </div>
     );

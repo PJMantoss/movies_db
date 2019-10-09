@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import MovieList from './MovieList';
+import TextField from '@material-ui/core/TextField';
 
 class Search extends Component {
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
             movies: [],
             movieName: "",
@@ -14,10 +15,10 @@ class Search extends Component {
         this.onMoviesInputChange = this.onMoviesInputChange.bind(this);
     }
 
-    onMoviesInputChange(e){
+    onMoviesInputChange = e => {
         this.setState({movieName:e.target.value, isFetching:true})
         fetch(`http://api.tvmaze.com/search/shows?q=${e.target.value}`)
-        .then(response => response.json())
+        .then((response) => response.json())
         .then(json => this.setState({movies: json, isFetching: false}))
     }
 
@@ -27,9 +28,9 @@ class Search extends Component {
         return (
             <div>
                 <div>
-                   <input 
-                       placeholder="Search Movies" 
-                       className="searchBar"
+                   <TextField
+                       id="search" 
+                       label="Search Movies" 
                        type="search"
                        margin="normal"
                        value={movieName} 
@@ -42,12 +43,12 @@ class Search extends Component {
                             !isFetching && movies.length === 0 && movieName.trim() === ""
                             &&
                             <p>Plese enter a name</p>
-                        },
+                        }
                         {
                             !isFetching && movies.length === 0 && movieName.trim() !== ""
                             &&
                             <p>No Movies have been found with this name</p>
-                        },
+                        }
                         
                         {
                             !isFetching && <MovieList list={this.state.movies}/>

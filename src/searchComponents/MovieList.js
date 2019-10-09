@@ -12,9 +12,15 @@ const MovieListItem = ({movies}) => (
     </Link>
 )
 
-function MovieList() {
+function MovieList(props) {
     return (
-        <div className="movieList">
+        <div style={{
+            display:'flex',
+            flex: 1,
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems:'center'
+        }}>
             <List component="nav">
                 {props.list.map(movies =>(
                     <MovieListItem movies={movies} key={movies.show.id} />
