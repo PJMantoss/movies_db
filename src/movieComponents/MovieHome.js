@@ -3,26 +3,23 @@ import Search from '../searchComponents/Search';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
+import Typography from '@material-ui/core/Typography';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
 
 const classes = makeStyles(theme => ({
-    root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      justifyContent: 'space-around',
-      overflow: 'hidden',
-      backgroundColor: theme.palette.background.paper,
-    },
-    gridList: {
-      width: 100,
-      height: 95,
-    },
-    icon: {
-      color: 'rgba(255, 255, 255, 0.54)',
-    },
+    container: {
+        display: 'grid',
+        gridTemplateColumns: 'repeat(12, 1fr)',
+        GridTemplateRow: 'auto',
+        gridGap: theme.spacing(3),
+      },
+    divider: {
+        margin: theme.spacing(2, 0),
+      },
   }));
 
 export class MovieHome extends Component {
@@ -55,7 +52,7 @@ export class MovieHome extends Component {
     }
 
     componentDidMount(){
-        fetch("http://api.tvmaze.com/shows?page=1")
+        fetch("http://api.tvmaze.com/shows")
         .then((response) => response.json())
         .then((results) => {
             this.setState({
@@ -71,30 +68,50 @@ export class MovieHome extends Component {
                 <Search />
                 
                     <div className={classes.root}>
-                        <GridList cellHeight={250} className={classes.gridList}>
+                        <Typography variant="subtitle1" gutterBottom>
+                               Movies/TV Shows
+                        </Typography>
 
-                            <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-                               <ListSubheader component="div">Movies/TV Shows</ListSubheader>
-                            </GridListTile>
-
+                        <Grid container spacing={3}>
                             {this.state.tvShow.map((item, i) => {
                                 return(
-                                    <GridListTile 
+                                    <Grid item xs={3}
                                         key={i} 
                                         onClick={this.openDetails.bind(this, i)} 
                                         onHide={this.closeDetails}
                                     >
-                                        <img src={item.image.medium} alt={item.title} />
-                                        <GridListTileBar
-                                            title={item.name}
-                                            subtitle={item.premiered}
-                                            rating={item.rating.average}
-                                        />
-                                    </GridListTile>
+                                        <Card>
+                                            <CardMedia 
+                                               style={{height:0, paddingTop: '56.25%'}}
+                                               component="img" 
+                                               image={item.image.original} 
+                                            />
+                                            <CardContent>
+                                                <Typography component="h2">
+                                                   {item.name}
+                                                </Typography>
+
+                                                <Typography component="h3">
+                                                    Year: {item.premiered}
+                                                </Typography >
+
+                                                <Typography component="h3">
+                                                    Rating: {item.rating.average}
+                                                </Typography>
+                                            </CardContent>
+
+                                            <CardActions>
+                                                <Button size="small" color="primary">
+                                                    View
+                                                </Button>
+                                            </CardActions>
+                                        </Card>
+                                        
+                                    </Grid>
                                 )
                             })}
 
-                        </GridList>
+                        </Grid>
                     </div>
             </div>
         )
