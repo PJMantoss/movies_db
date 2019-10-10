@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import Search from '../searchComponents/Search';
 
 import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 
-const useStyles = makeStyles(theme => ({
+const classes = makeStyles(theme => ({
     root: {
       display: 'flex',
       flexWrap: 'wrap',
@@ -16,8 +17,8 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: theme.palette.background.paper,
     },
     gridList: {
-      width: 500,
-      height: 450,
+      width: 100,
+      height: 95,
     },
     icon: {
       color: 'rgba(255, 255, 255, 0.54)',
@@ -25,6 +26,7 @@ const useStyles = makeStyles(theme => ({
   }));
 
 export class MovieHome extends Component {
+
     constructor(props){
         super(props)
         this.state = {
@@ -63,7 +65,6 @@ export class MovieHome extends Component {
     }
 
     render() {
-        const classes = useStyles();
 
         return (
             <div>
@@ -83,11 +84,11 @@ export class MovieHome extends Component {
                                         onClick={this.openDetails.bind(this, i)} 
                                         onHide={this.closeDetails}
                                     >
-                                        <img src={item.item.show.image.medium} alt={item.title} />
+                                        <img src={item.image.medium} alt={item.title} />
                                         <GridListTileBar
-                                            title={item.show.name}
-                                            subtitle={item.show.premiered}
-                                            subtitle={show.rating.average}
+                                            title={item.name}
+                                            subtitle={item.premiered}
+                                            rating={item.rating.average}
                                         />
                                     </GridListTile>
                                 )
