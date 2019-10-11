@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Search from '../searchComponents/Search';
 
-import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -21,6 +21,7 @@ const classes = makeStyles(theme => ({
         margin: theme.spacing(2, 0),
       },
   }));
+
 
 export class MovieHome extends Component {
 
@@ -64,58 +65,59 @@ export class MovieHome extends Component {
     render() {
 
         return (
-            <div>
-                <Search />
-                
-                    <div className={classes.root}>
-                        <Typography variant="subtitle1" gutterBottom>
-                               Movies/TV Shows
-                        </Typography>
+                <div>
+                    <Search />
+                    
+                        <div className={classes.root}>
 
-                        <Grid container spacing={3}>
-                            {this.state.tvShow.map((item, i) => {
-                                return(
-                                    <Grid item xs={3}
-                                        key={i} 
-                                        onClick={this.openDetails.bind(this, i)} 
-                                        onHide={this.closeDetails}
-                                    >
-                                        <Card>
-                                            <CardMedia 
-                                               style={{height:0, paddingTop: '56.25%'}}
-                                               component="img" 
-                                               image={item.image.thumbnail} 
-                                            />
-                                            <CardContent>
-                                                <Typography component="h2">
-                                                   {item.name}
-                                                </Typography>
+                            <Typography variant="subtitle1" gutterBottom>
+                                   Movies/TV Shows
+                            </Typography>
 
-                                                <Typography component="h3">
-                                                    Year: {item.premiered}
-                                                </Typography >
-
-                                                <Typography component="h3">
-                                                    Rating: {item.rating.average}
-                                                </Typography>
-                                            </CardContent>
-
-                                            <CardActions>
-                                                <Button size="small" color="primary">
-                                                    View
-                                                </Button>
-                                            </CardActions>
-                                        </Card>
-                                        
-                                    </Grid>
-                                )
-                            })}
-
-                        </Grid>
-                    </div>
-            </div>
-        )
+                            <Grid container spacing={3}>
+                                {this.state.tvShow.map((item, i) => {
+                                    return(
+                                        <Grid item xs={3}
+                                            key={i}  
+                                            onHide={this.closeDetails}
+                                        >
+                                            <Card>
+                                                <CardMedia 
+                                                   style={{height:400}}
+                                                   component="img" 
+                                                   image={item.image.original} 
+                                                />
+                                                <CardContent>
+                                                    <Typography component="h2">
+                                                       {item.name}
+                                                    </Typography>
+                                                    <Typography component="h3">
+                                                        Year: {item.premiered}
+                                                    </Typography >
+                                                    <Typography component="h3">
+                                                        Rating: {item.rating.average}
+                                                    </Typography>
+                                                </CardContent>
+                                                <CardActions>
+                                                    <Button 
+                                                        size="small" 
+                                                        color="primary"
+                                                        onClick={this.openDetails.bind(this, i)}
+                                                    >
+                                                        View
+                                                    </Button>
+                                                </CardActions>
+                                            </Card>
+                                            
+                                        </Grid>
+                                    )
+                                })}
+                            </Grid>
+                        </div>
+                </div>
+            )
+        }
     }
-}
+    
 
 export default MovieHome

@@ -12,10 +12,25 @@ code {
     monospace;
 }
 
-.movieList {
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-  justify-content: center;
+.pixContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+  grid-gap: 20px; 
   align-items: center;
+}
+
+.movie {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+}
+
+.movie > img {
+  height: 210px;
+  width: 295px;
+}
+
+.description {
+  padding: 0 20px 20px;
 }

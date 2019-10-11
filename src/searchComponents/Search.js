@@ -42,7 +42,7 @@ class Search extends Component {
                         {
                             !isFetching && movies.length === 0 && movieName.trim() === ""
                             &&
-                            <p>Plese enter a name</p>
+                            <p></p>
                         }
                         {
                             !isFetching && movies.length === 0 && movieName.trim() !== ""
