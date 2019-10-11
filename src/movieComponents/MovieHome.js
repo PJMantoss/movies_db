@@ -84,7 +84,7 @@ export class MovieHome extends Component {
                                             <CardMedia 
                                                style={{height:0, paddingTop: '56.25%'}}
                                                component="img" 
-                                               image={item.image.original} 
+                                               image={item.image.thumbnail} 
                                             />
                                             <CardContent>
                                                 <Typography component="h2">
