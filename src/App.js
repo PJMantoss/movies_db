@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './App.css';
 import 'whatwg-fetch';
 import Home from './Home';
@@ -6,6 +7,7 @@ import Home from './Home';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
 class App extends React.Component {
 
@@ -19,6 +21,11 @@ class App extends React.Component {
               <td width="10" />
               <td>
                 <h1>Movies Database</h1>
+              </td>
+              <td className="homeBtn">
+                <Link style={{ textDecoration: 'none' }} to="/">
+                    <Button variant="contained" color="primary">Home</Button>
+                </Link>
               </td>
             </tr>
           </tbody>

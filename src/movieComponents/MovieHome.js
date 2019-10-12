@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Search from '../searchComponents/Search';
 
 import Container from '@material-ui/core/Container';
@@ -9,7 +10,6 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
 
 const classes = makeStyles(theme => ({
     container: {
@@ -32,26 +32,8 @@ export class MovieHome extends Component {
             tvShow: [],
             openDetails: []
         }
-        this.closeDetails.bind(this);
     }
 
-    openDetails(id){
-        this.setState({
-            openDetails: {
-                [id]: true
-            }
-        });
-    }
-
-    closeDetails(){
-        this.setState({
-            openDetails: false
-        });
-    }
-
-    handleShowDetails(){
-        this.openDetails();
-    }
 
     componentDidMount(){
         fetch("http://api.tvmaze.com/shows")
@@ -66,7 +48,7 @@ export class MovieHome extends Component {
     render() {
 
         return (
-                <Container maxWidth="sm">
+                <Container>
                     <Search />
                     
                         <div className={classes.root}>
@@ -76,12 +58,12 @@ export class MovieHome extends Component {
                             </Typography>
 
                             <Grid container spacing={3}>
-                                {this.state.tvShow.map((item, i) => {
+                                {this.state.tvShow.map((item, id) => {
                                     return(
                                         <Grid item xs={3}
-                                            key={i}  
-                                            onHide={this.closeDetails}
+                                            key={id}  
                                         >
+                                            <Link style={{ textDecoration: 'none' }} to="/movieinfo/:id" >
                                             <Card>
                                                 <CardMedia 
                                                    style={{height:400}}
@@ -100,16 +82,9 @@ export class MovieHome extends Component {
                                                     </Typography>
                                                 </CardContent>
                                                 <CardActions>
-                                                    <Button 
-                                                        size="small" 
-                                                        color="primary"
-                                                        onClick={this.openDetails.bind(this, i)}
-                                                    >
-                                                        View
-                                                    </Button>
                                                 </CardActions>
                                             </Card>
-                                            
+                                            </Link>
                                         </Grid>
                                     )
                                 })}

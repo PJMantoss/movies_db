@@ -9,6 +9,14 @@
     padding-left: 16;
 }
 
+.homeBtn {
+  position: absolute;
+  right: 0px;
+  width: 350px;
+  padding-top: 25px;
+  display: inline;
+}
+
 .App-logo {
   height: 40vmin;
 }
