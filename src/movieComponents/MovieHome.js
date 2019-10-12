@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Search from '../searchComponents/Search';
 
+import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -65,13 +66,13 @@ export class MovieHome extends Component {
     render() {
 
         return (
-                <div>
+                <Container maxWidth="sm">
                     <Search />
                     
                         <div className={classes.root}>
 
                             <Typography variant="subtitle1" gutterBottom>
-                                   Movies/TV Shows
+                                   TV Shows
                             </Typography>
 
                             <Grid container spacing={3}>
@@ -114,7 +115,7 @@ export class MovieHome extends Component {
                                 })}
                             </Grid>
                         </div>
-                </div>
+                </Container>
             )
         }
     }
