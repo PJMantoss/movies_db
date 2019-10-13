@@ -8,7 +8,7 @@ const Home = props => (
     <Switch>
         <Route exact path="/" component={MovieHome}/>
         <Route path="/movies/:id" component={SearchResult}/>
-        <Route path="/movieinfo/:id" component={MovieInfo}/>
+        <Route path="/movieinfo/${id}" component={MovieInfo}/>
     </Switch>
 );
 

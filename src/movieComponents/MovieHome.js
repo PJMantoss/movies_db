@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Search from '../searchComponents/Search';
+import Pagination from './Pagination';
 
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -10,6 +11,7 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
+
 
 const classes = makeStyles(theme => ({
     container: {
@@ -29,8 +31,10 @@ export class MovieHome extends Component {
     constructor(props){
         super(props)
         this.state = {
-            tvShow: [],
-            openDetails: []
+            tvShows: [],
+            currentShows: [],
+            currentPage: null,
+            totalPages: null
         }
     }
 
@@ -40,30 +44,65 @@ export class MovieHome extends Component {
         .then((response) => response.json())
         .then((results) => {
             this.setState({
-                tvShow: results
+                tvShows: results
             });
         })
     }
 
+    onPageChanged = data => {
+      const { tvShows } = this.state;
+      const { currentPage, totalPages, pageLimit } = data;
+  
+      const offset = (currentPage - 1) * pageLimit;
+      const currentShows = tvShows.slice(offset, offset + pageLimit);
+  
+      this.setState({ currentPage, currentShows, totalPages });
+    }
+
     render() {
+
+          const { tvShows, currentShows, currentPage, totalPages } = this.state;
+          const totalShows = tvShows.length;
+
+          if (totalShows === 0) return null;
+
+          const headerClass = ['text-dark py-2 pr-4 m-0', currentPage ? 'border-gray border-right' : ''].join(' ').trim();
 
         return (
                 <Container>
                     <Search />
-                    
-                        <div className={classes.root}>
 
-                            <Typography variant="subtitle1" gutterBottom>
-                                   TV Shows
-                            </Typography>
+                    <div className="w-100 px-4 py-5 d-flex flex-row flex-wrap align-items-center justify-content-between">
+
+                          <div className="d-flex flex-row align-items-center">
+
+                              <h2 className={headerClass}>
+                                <strong className="text-secondary">{totalShows}</strong> TV Shows
+                              </h2>
+                              
+                              { currentPage && (
+                                <span className="current-page d-inline-block h-100 pl-4 text-secondary">
+                                  Page <span className="font-weight-bold">{ currentPage }</span> / <span className="font-weight-bold">{ totalPages }</span>
+                                </span>
+                              ) }
+
+                          </div>
+
+                          <div className="d-flex flex-row py-4 align-items-center">
+                            <Pagination totalRecords={totalShows} pageLimit={18} pageNeighbours={1} onPageChanged={this.onPageChanged} />
+                          </div>
+                          
+                    </div>
+
+                    { currentShows.map((item, id) => <div className={classes.root} key={id} item={item}>
 
                             <Grid container spacing={3}>
-                                {this.state.tvShow.map((item, id) => {
+                                {this.state.tvShows.map((item, id) => {
                                     return(
                                         <Grid item xs={3}
                                             key={id}  
                                         >
-                                            <Link style={{ textDecoration: 'none' }} to="/movieinfo/:id" >
+                                            <Link style={{ textDecoration: 'none' }} to="/movieinfo/${id}" >
                                             <Card>
                                                 <CardMedia 
                                                    style={{height:400}}
@@ -89,7 +128,9 @@ export class MovieHome extends Component {
                                     )
                                 })}
                             </Grid>
-                        </div>
+
+                            </div>) }
+
                 </Container>
             )
         }
