@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 
@@ -20,7 +20,7 @@ export class MovieInfo extends Component {
 
     componentDidMount(){
 
-        let id = this.props.id;
+        let id = this.props.location.pathname.split('/')[2];
 
         fetch(`http://api.tvmaze.com/shows/${id}?embed=cast`)
         .then((response) => response.json())
@@ -45,7 +45,7 @@ export class MovieInfo extends Component {
                                 <CardMedia
                                     style={{height:400}}
                                     component="img" 
-                                    image={this.state.movieDetails.image}
+                                    image={this.state.movieDetails.image.medium}
                                 />
                                 <CardContent>
                                     <Typography component="h1">
@@ -55,14 +55,12 @@ export class MovieInfo extends Component {
                                         Year: {this.state.movieDetails.premiered}
                                     </Typography >
                                     <Typography component="h3">
-                                        Rating: {this.state.movieDetails.rating}
+                                        Rating: {this.state.movieDetails.rating.average}
                                     </Typography>
                                     <Typography component="h3">
                                         Genre: {this.state.movieDetails.genres}
                                     </Typography>
                                 </CardContent>
-                                <CardActions>
-                                </CardActions>
                             </Card>
                         </div>
                         <br/>
@@ -72,14 +70,29 @@ export class MovieInfo extends Component {
                             {this.state.movieDetails.summary}
                         </div>
 
-                        <div>
-                             {this.state.movieDetails.episodes}
-                        </div>
+                        <br/>
 
-                        <div>
+                        <Grid container spacing={2}>
                             <h3>Cast</h3>
-                            {this.state.movieDetails.cast}
-                        </div>
+                            {this.state.movieDetails.cast.person.map((actor, id) => {
+                                return (
+                                    <Grid item xs={3} key={id}>
+                                        <Card>
+                                                <CardMedia 
+                                                   style={{height:350}}
+                                                   component="img" 
+                                                   image={actor.image.medium} 
+                                                />
+                                                <CardContent>
+                                                    <Typography component="h2">
+                                                       {actor.name}
+                                                    </Typography>
+                                                </CardContent>
+                                            </Card>
+                                    </Grid>
+                                )
+                            })}
+                        </Grid>
                     </div>)}
                 </Container>
             </div>
