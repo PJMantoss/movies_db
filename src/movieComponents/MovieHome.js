@@ -102,7 +102,7 @@ export class MovieHome extends Component {
                                         <Grid item xs={3}
                                             key={id}  
                                         >
-                                            <Link style={{ textDecoration: 'none' }} to="/movieinfo/${id}" >
+                                            <Link style={{ textDecoration: 'none' }} to={`/movieinfo/${id}`}  >
                                             <Card>
                                                 <CardMedia 
                                                    style={{height:400}}
