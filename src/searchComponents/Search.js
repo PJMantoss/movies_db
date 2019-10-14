@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import MovieList from './MovieList';
+
+import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
+import SearchIcon from '@material-ui/icons/Search';
 
 class Search extends Component {
     constructor(props){
@@ -28,15 +31,24 @@ class Search extends Component {
         return (
             <div>
                 <div>
-                   <TextField
-                       id="search" 
-                       label="Search Movies" 
-                       type="search"
-                       margin="normal"
-                       value={movieName} 
-                       onChange={this.onMoviesInputChange}
-                       helperText={importantText}
-                    />
+                   <Grid container spacing={1} alignItems="flex-end">
+                       <Grid item xs={5}></Grid>
+                       <Grid item>
+                            <TextField
+                            id="search" 
+                            label="Search Movies" 
+                            type="search"
+                            margin="normal"
+                            value={movieName} 
+                            onChange={this.onMoviesInputChange}
+                            helperText={importantText}
+                            />
+                       </Grid>
+                       <Grid item>
+                          <SearchIcon />
+                       </Grid>
+                       <Grid item xs={4}></Grid>
+                   </Grid>
                 </div>
                 <div>
                         {

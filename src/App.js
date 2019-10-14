@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import './App.css';
 import 'whatwg-fetch';
 import Home from './Home';
+import Footer from './Footer' 
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 
 class App extends React.Component {
 
@@ -24,7 +25,7 @@ class App extends React.Component {
               </td>
               <td className="homeBtn">
                 <Link style={{ textDecoration: 'none' }} to="/">
-                    <Button variant="contained" color="primary">Home</Button>
+                   <HomeRoundedIcon />
                 </Link>
               </td>
             </tr>
@@ -40,7 +41,7 @@ class App extends React.Component {
         </AppBar>
 
         <Home />
-  
+        <Footer />
       </div>
     );
   }

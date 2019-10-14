@@ -12,6 +12,18 @@ code {
     monospace;
 }
 
+/* .footer {
+  position: fixed;
+  height: 20%;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color:#1976d2;
+  color: white;
+  align-content: center;
+  justify-content: center;
+} */
+
 .pixContainer {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

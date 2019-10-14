@@ -5,25 +5,14 @@ import Pagination from './Pagination';
 
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import StarRoundedIcon from '@material-ui/icons/StarRounded';
 
-
-const classes = makeStyles(theme => ({
-    container: {
-        display: 'grid',
-        gridTemplateColumns: 'repeat(12, 1fr)',
-        GridTemplateRow: 'auto',
-        gridGap: theme.spacing(3),
-      },
-    divider: {
-        margin: theme.spacing(2, 0),
-      },
-  }));
 
 
 export class MovieHome extends Component {
@@ -62,6 +51,7 @@ export class MovieHome extends Component {
     render() {
 
           const { tvShows, currentShows, currentPage, totalPages } = this.state;
+
           const totalShows = tvShows.length;
 
           if (totalShows === 0) return null;
@@ -89,48 +79,44 @@ export class MovieHome extends Component {
                           </div>
 
                           <div className="d-flex flex-row py-4 align-items-center">
-                            <Pagination totalRecords={totalShows} pageLimit={18} pageNeighbours={1} onPageChanged={this.onPageChanged} />
+                            <Pagination totalRecords={totalShows} pageLimit={16} pageNeighbours={1} onPageChanged={this.onPageChanged} />
                           </div>
                           
                     </div>
 
-                    { currentShows.map((item, id) => <div className={classes.root} key={id} item={item}>
-
-                            <Grid container spacing={3}>
-                                {this.state.tvShows.map((item, id) => {
-                                    return(
-                                        <Grid item xs={3}
-                                            key={id}  
-                                        >
-                                            <Link style={{ textDecoration: 'none' }} to={`/movieinfo/${id}`}  >
-                                            <Card>
-                                                <CardMedia 
-                                                   style={{height:400}}
-                                                   component="img" 
-                                                   image={item.image.original} 
-                                                />
-                                                <CardContent>
-                                                    <Typography component="h2">
-                                                       {item.name}
-                                                    </Typography>
-                                                    <Typography component="h3">
-                                                        Year: {item.premiered}
-                                                    </Typography >
-                                                    <Typography component="h3">
-                                                        Rating: {item.rating.average}
-                                                    </Typography>
-                                                </CardContent>
-                                                <CardActions>
-                                                </CardActions>
-                                            </Card>
-                                            </Link>
-                                        </Grid>
-                                    )
-                                })}
-                            </Grid>
-
-                            </div>) }
-
+                    <Grid container spacing={3}>
+                        {currentShows.map((item, id) => {
+                            return(
+                                <Grid item xs={3}
+                                    key={id} 
+                                    style={{textAlign: 'justify'}} 
+                                >
+                                    <Link style={{ textDecoration: 'none' }} to={`/movieinfo/${item.id}`}  >
+                                    <Card>
+                                        <CardMedia 
+                                            style={{height:400}}
+                                            component="img" 
+                                            image={item.image.original} 
+                                        />
+                                        <CardContent>
+                                            <Button variant="contained" style={{backgroundColor: "#000000", color: "#ffffff"}}>
+                                                {item.name}
+                                            </Button><br/>
+                                            <Button variant="outlined">
+                                                Premiered: {item.premiered}
+                                            </Button><br/>
+                                            <Button startIcon={<StarRoundedIcon />} variant="contained" color="primary">
+                                                {item.rating.average}
+                                            </Button>
+                                        </CardContent>
+                                        <CardActions>
+                                        </CardActions>
+                                    </Card>
+                                    </Link>
+                                </Grid>
+                            )
+                        })}
+                    </Grid>
                 </Container>
             )
         }
