@@ -6,8 +6,11 @@
     "@material-ui/core": "^4.5.0",
     "@material-ui/icons": "^4.4.3",
     "bootstrap": "^4.3.1",
+    "express": "^4.17.1",
+    "express-favicon": "^2.0.1",
     "gh-pages": "^2.1.1",
     "jquery": "^3.4.1",
+    "path": "^0.12.7",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
@@ -18,7 +21,7 @@
     "whatwg-fetch": "^3.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server.js",
     "predeploy": "yarn run build",
     "deploy": "gh-pages -d build",
     "build": "react-scripts build",
