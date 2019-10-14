@@ -45,7 +45,7 @@ export class MovieInfo extends Component {
                                 <CardMedia
                                     style={{height:400}}
                                     component="img" 
-                                    image={this.state.movieDetails.image.medium}
+                                    image={this.state.movieDetails.image.original}
                                 />
                                 <CardContent>
                                     <Typography component="h1">
@@ -58,7 +58,14 @@ export class MovieInfo extends Component {
                                         Rating: {this.state.movieDetails.rating.average}
                                     </Typography>
                                     <Typography component="h3">
-                                        Genre: {this.state.movieDetails.genres}
+                                        Genres: {this.state.movieDetails.genres.map((genre, id) => {
+                                        return (
+                                            <span key={id}>
+                                                {genre + ' '}
+                                            </span>
+                                            )
+                                        }
+                                    )}
                                     </Typography>
                                 </CardContent>
                             </Card>
@@ -71,21 +78,22 @@ export class MovieInfo extends Component {
                         </div>
 
                         <br/>
-
-                        <Grid container spacing={2}>
+                        <div>
                             <h3>Cast</h3>
-                            {this.state.movieDetails.cast.person.map((actor, id) => {
+                        </div>
+                        <Grid container spacing={2}>
+                            {this.state.movieDetails._embedded.cast.map((actor, id) => {
                                 return (
                                     <Grid item xs={3} key={id}>
                                         <Card>
                                                 <CardMedia 
                                                    style={{height:350}}
                                                    component="img" 
-                                                   image={actor.image.medium} 
+                                                   image={actor.person.image.medium} 
                                                 />
                                                 <CardContent>
                                                     <Typography component="h2">
-                                                       {actor.name}
+                                                       {actor.person.name}
                                                     </Typography>
                                                 </CardContent>
                                             </Card>
