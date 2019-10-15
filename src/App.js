@@ -34,7 +34,7 @@ class App extends React.Component {
 
         <AppBar position="static" >
             <Toolbar >
-                <Typography variant="title" color="inherit" style={{flex:1}} align="center">
+                <Typography variant="subtitle1" color="inherit" style={{flex:1}} align="center">
                   Look Up Your Favorite TV Shows and Movies
                 </Typography>
             </Toolbar>

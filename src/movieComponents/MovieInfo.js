@@ -49,7 +49,7 @@ export class MovieInfo extends Component {
 
         let id = this.props.location.pathname.split('/')[2];
 
-        fetch(`http://api.tvmaze.com/shows/${id}?embed=cast/`)
+        fetch(`https://api.tvmaze.com/shows/${id}?embed=cast`)
         .then((response) => response.json())
         .then((details) => {
             this.setState({

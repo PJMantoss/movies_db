@@ -29,7 +29,7 @@ export class MovieHome extends Component {
 
 
     componentDidMount(){
-        fetch("http://api.tvmaze.com/shows/")
+        fetch("https://api.tvmaze.com/shows")
         .then((response) => response.json())
         .then((results) => {
             this.setState({
