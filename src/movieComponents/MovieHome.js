@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Search from '../searchComponents/Search';
 import Pagination from './Pagination';
+import '../index.css';
 
 import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -29,7 +27,7 @@ export class MovieHome extends Component {
 
 
     componentDidMount(){
-        fetch("http://api.tvmaze.com/shows/")
+        fetch("https://api.tvmaze.com/shows")
         .then((response) => response.json())
         .then((results) => {
             this.setState({
@@ -84,15 +82,16 @@ export class MovieHome extends Component {
                           
                     </div>
 
-                    <Grid container spacing={3}>
+                    <div className="gridContainer" spacing={3}>
                         {currentShows.map((item, id) => {
                             return(
-                                <Grid item xs={3}
+                                <div 
                                     key={id} 
-                                    style={{textAlign: 'justify'}} 
+                                    style={{textAlign: 'justify'}}
+                                    className='gridItem' 
                                 >
                                     <Link style={{ textDecoration: 'none' }} to={`/movieinfo/${item.id}`}  >
-                                    <Card>
+                                    <div>
                                         <CardMedia 
                                             style={{height:400}}
                                             component="img" 
@@ -111,12 +110,12 @@ export class MovieHome extends Component {
                                         </CardContent>
                                         <CardActions>
                                         </CardActions>
-                                    </Card>
+                                    </div>
                                     </Link>
-                                </Grid>
+                                </div>
                             )
                         })}
-                    </Grid>
+                    </div>
                 </Container>
             )
         }

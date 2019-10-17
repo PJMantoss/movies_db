@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import '../index.css'
 
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
@@ -49,7 +50,7 @@ export class MovieInfo extends Component {
 
         let id = this.props.location.pathname.split('/')[2];
 
-        fetch(`http://api.tvmaze.com/shows/${id}?embed=cast/`)
+        fetch(`https://api.tvmaze.com/shows/${id}?embed=cast`)
         .then((response) => response.json())
         .then((details) => {
             this.setState({
@@ -65,9 +66,9 @@ export class MovieInfo extends Component {
                     {this.state.loading ? (
                     <div>Loading...</div>
                     ) : (
-                    <div>
-                        <Grid container className={classes.root} style={{paddingTop: '3%'}}>
-                            <Grid item xs={4} style={{borderRadius: 5}}>
+                    <div classname="movieDetails">
+                        <div  className="posterContainer" style={{paddingTop: '3%'}}>
+                            <div className="poster" style={{borderRadius: 5}}>
                                 <Card>
                                     <CardMedia
                                         style={{height:550}}
@@ -96,10 +97,10 @@ export class MovieInfo extends Component {
                                         </Button>
                                     </CardContent>
                                 </Card>
-                            </Grid>
+                            </div>
 
-                            <Grid item xs={8} style={{textAlign: 'justify', paddingLeft: '2%'}}>
-                                <div>
+                            <div className="movieInfo" xs={8} style={{textAlign: 'justify', }}>
+                                <div className="summary">
                                     <Button variant="contained" style={{backgroundColor: "#000000", color: "#ffffff"}}>
                                         <h3>Summary</h3>
                                     </Button>
@@ -107,20 +108,20 @@ export class MovieInfo extends Component {
                                     {this.state.movieDetails.summary}
                                 </div>
                                 <Divider />
-                                <div>
+                                <div className="language">
                                   <Button variant="contained" color="primary" className={classes.button}>
                                      <strong>Language:</strong>
                                   </Button> {this.state.movieDetails.language}
                                 </div>
                                 <Divider />
-                                <div>
+                                <div className="runtime">
                                   <Button variant="contained" style={{backgroundColor: "#800080", color: "#ffffff"}}>
                                   <strong>Runtime:</strong>
                                   </Button> {this.state.movieDetails.runtime}
             
                                 </div>
                                 <Divider />
-                                <div>
+                                <div className="schedule">
                                     <Button variant="contained" style={{backgroundColor: "#FF1493", color: "#ffffff"}}>
                                       <strong>Schedule:</strong>
                                     </Button><br/>
@@ -140,34 +141,32 @@ export class MovieInfo extends Component {
                                     })}
                                 </div>
                                 <Divider />
-                                 <div>
+                                 <div className="status">
                                      <Button variant="contained" style={{backgroundColor: "#008000", color: "#ffffff"}}>
                                        <strong>Status:</strong>
                                      </Button>
                                      {this.state.movieDetails.status}
                                 </div>
-                                <Divider />
-                            </Grid>
-                        </Grid>
-                        <br/>
-
-                            <div>
-                                <Button variant="contained" style={{backgroundColor: "#000000", color: "#ffffff"}}>
-                                <h3>Cast</h3><br/>
-                                </Button>
                             </div>
-                            <br/>
+                        </div>
 
-                        <Grid container spacing={2}>
-                            
+                                    <div>
+                                        <Button variant="contained" style={{backgroundColor: "#000000", color: "#ffffff"}}>
+                                        <h3>Cast</h3><br/>
+                                        </Button>
+                                    </div>
+
+                        <div className="castContainer">
+                                
                             {this.state.movieDetails._embedded.cast.map((actor, id) => {
                                 return (
-                                    <Grid item xs={3} key={id}>
-                                        <Card>
+                                    <div classname="cast" item xs={3} key={id}>
+                                        <div>
+                                           <Card>
                                                 <CardMedia 
-                                                   style={{height:350}}
+                                                   style={{height:350, width: 300}}
                                                    component="img" 
-                                                   image={actor.person.image.medium} 
+                                                   image={actor.person.image.original} 
                                                 />
                                                 <CardContent>
                                                     <Typography component="h2">
@@ -175,15 +174,16 @@ export class MovieInfo extends Component {
                                                     </Typography>
                                                 </CardContent>
                                             </Card>
-                                    </Grid>
+                                        </div>
+                                    </div>
                                 )
                             })}
-                            <Grid item xs={3} style={{justifyContent: 'center', alignContent: 'center', paddingTop: '10%'}}>
+                            <div className="viewMore" item xs={3} style={{justifyContent: 'center', alignContent: 'center', paddingTop: '10%'}}>
                                 <Link style={{ textDecoration: 'none' }} to="/">
                                     <Button variant="contained" color="primary">View More TV  Shows</Button>
                                 </Link>
-                            </Grid>
-                        </Grid>
+                            </div>
+                        </div>
                     </div>)}
                     
                 </Container>

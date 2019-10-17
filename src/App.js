@@ -15,26 +15,28 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
-        <table className="tableHead">
-          <tbody>
-            <tr>
-              <td> <img alt="app icon" width="85" src="https://img.icons8.com/clouds/200/000000/retro-tv.png" /> </td>
-              <td width="10" />
-              <td>
-                <h1>Movies Database</h1>
-              </td>
-              <td className="homeBtn">
-                <Link style={{ textDecoration: 'none' }} to="/">
-                   <HomeRoundedIcon />
-                </Link>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        
+          <div className="header">
+
+              <div className="App-logo">
+                  <img alt="app icon" width="85" src="https://img.icons8.com/clouds/200/000000/retro-tv.png" />
+              </div>
+
+              <div className="siteName">
+                  <h1>Movies Database</h1>
+              </div>
+
+              <div className="homeBtn">
+                  <Link style={{ textDecoration: 'none' }} to="/">
+                    <HomeRoundedIcon />
+                  </Link>
+              </div>
+
+          </div>
 
         <AppBar position="static" >
             <Toolbar >
-                <Typography variant="title" color="inherit" style={{flex:1}} align="center">
+                <Typography variant="subtitle1" color="inherit" style={{flex:1}} align="center">
                   Look Up Your Favorite TV Shows and Movies
                 </Typography>
             </Toolbar>

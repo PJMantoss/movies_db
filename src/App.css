@@ -2,23 +2,32 @@
   text-align: center;
 }
 
-.tableHead {
+.header {
     background-color: black;
-    display: block;
-    color:white;
-    padding-left: 16;
+    display: inline-flex;
+    color: white;
+    padding: 10;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
+.siteName {
+  padding-top: 25px;
+}
+
+
 .homeBtn {
-  position: absolute;
+  /*position: absolute;*/
   right: 0px;
-  width: 350px;
-  padding-top: 52px;
+  width: 0px;
+  padding-top: 25px;
   display: inline;
+  float: right;
 }
 
 .App-logo {
-  height: 40vmin;
+  padding-right: 5px;
 }
 
 .App-header {
